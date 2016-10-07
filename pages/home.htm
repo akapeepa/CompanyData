@@ -1,0 +1,62 @@
+<div >
+  <md-content class="md-padding" >
+    <div layout="row">
+      <div flex-gt-sm="60" flex>
+        <h3 class="md-display-1 flex">Company Data For {{companyData[0].REGISTERED_STATE}}<span flex></span></h3>
+      </div>
+    </div>
+    <form>
+
+      <md-input-container class=" md-block">
+        <md-icon><i class="material-icons">search</i></md-icon>
+        <input    ng-model="search"/>
+      </md-input-container>
+    </form>
+
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row text-center">
+              <div class="col-sm-2 text-left"><md-button ng-click="sortBy('COMPANY_NAME')">Company Name</md-button>
+                <span class="sortorder" ng-show="propertyName === 'COMPANY_NAME'" ng-class="{reverse: reverse}"></span>
+              </div>
+              <div class="col-sm-2">  <md-button ng-click="sortBy('CORPORATE_IDENTIFICATION_NUMBER')">Cin</md-button>
+                <span class="sortorder" ng-show="propertyName === 'CORPORATE_IDENTIFICATION_NUMBER'" ng-class="{reverse: reverse}"></span>
+              </div>
+              <div class="col-sm-2">  <md-button ng-click="sortBy('DATE_OF_REGISTRATION')">Registration Date </md-button>
+                <span class="sortorder" ng-show="propertyName === 'DATE_OF_REGISTRATION'" ng-class="{reverse: reverse}"></span>
+              </div>
+              <div class="col-sm-2">  <md-button ng-click="sortBy('AUTHORIZED_CAPITAL')">AUTHORIZED CAPITAL</md-button>
+                <span>(IN INR)</span>
+                <span class="sortorder" ng-show="propertyName === 'AUTHORIZED_CAPITAL'" ng-class="{reverse: reverse}"></span>
+              </div>
+              <div class="col-sm-2">  <md-button ng-click="sortBy('COMPANY_STATUS')">Status</md-button>
+                <span class="sortorder" ng-show="propertyName === 'COMPANY_STATUS'" ng-class="{reverse: reverse}"></span>
+              </div>
+              <div class="col-sm-2"><span style="margin-left:-15px;"><md-button ng-disabled="true" style="color:BLACK;" >COMPANY CATEGORY</md-button></span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="row" dir-paginate="i in  companyData | orderBy:propertyName:reverse | filter:search:strict |itemsPerPage:10" >
+              <div class="col-sm-2 text-left"><h5>{{i.COMPANY_NAME}}</h3></div>
+                <div style="text-align:center;" class="col-sm-2"><h5>{{i.CORPORATE_IDENTIFICATION_NUMBER}}</h5></div>
+                <div style="text-align:center;" class="col-sm-2"><h5>{{i.DATE_OF_REGISTRATION}}</h5></div>
+                <div style="text-align:center;" class="col-sm-2"><h5>{{i.AUTHORIZED_CAPITAL}}</h5></div>
+                <div style="text-align:center;" class="col-sm-2"><h5>{{i.COMPANY_STATUS}}</h5></div>
+                <div style="text-align:center;" class="col-sm-2"><h5>{{i.COMPANY_CLASS}}</h5></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <dir-pagination-controls
+      max-size=""
+      direction-links="true"
+      boundary-links="true" >
+    </dir-pagination-controls>
+
+  </md-content>
+</div>
